@@ -50,4 +50,38 @@ By reusing and sharing clothing, the platform helps reduce waste, support enviro
 ---
 
 ## 📂 Folder Structure
+project/
+│
+├── node_modules/
+├── Odoo/
+├── src/
+│   ├── components/
+│   ├── contexts/
+│   ├── data/
+│   ├── hooks/
+│   ├── lib/
+│   ├── odoo-x-clothes/
+│   ├── pages/
+│   ├── types/
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── index.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+│
+├── venv/
+├── .gitignore
+├── components.json
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
 
