@@ -43,11 +43,7 @@ By reusing and sharing clothing, the platform helps reduce waste, support enviro
 
 ---
 
-## 📸 Screenshots
 
-> Upload app screenshots here once your UI is ready.
-
----
 
 ## 📂 Folder Structure
 project/
