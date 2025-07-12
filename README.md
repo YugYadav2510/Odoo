@@ -38,7 +38,7 @@ By reusing and sharing clothing, the platform helps reduce waste, support enviro
 | Name           | Email                            | Role                     |
 |----------------|----------------------------------|--------------------------|
 | Yug Yadav      | yugyadav2510@gmail.com           | UI/UX & Frontend Developer |
-| Jinay Shah     | jinay2910@gmail.com              | Full Stack Developer / Project Lead |
+| Jinay Shah     | jinay2910@gmail.com              | Project Lead             |
 | Smit Goyani    | 24it026@charusat.edu.in          | Backend Developer        |
 | Pruthvi Patel  | 24it074@charusat.edu.in          | Documentation & Testing  |
 
