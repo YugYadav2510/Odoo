@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kids Collection | E-Thrift</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== Base Styles ===== */
+    :root {
+      --primary: #000000;
+      --secondary: #ffffff;
+      --accent: #ff0000;
+      --bg-light: #f8f8f8;
+      --text-dark: #222222;
+      --text-light: #ffffff;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+      --border-gray: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--secondary);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== Header Styles ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--secondary);
+      z-index: 1000;
+      padding: 1rem 2rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .logo {
+      height: 42px;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .icon-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .icon-box:hover {
+      background-color: var(--bg-light);
+    }
+
+    .icon-box i {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+    }
+
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      transition: var(--transition);
+      border: 1px solid var(--primary);
+    }
+
+    .profile-link:hover {
+      background-color: var(--primary);
+      color: var(--secondary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ===== Enhanced Navbar Styles ===== */
+    nav {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-container {
+      display: flex;
+      gap: 0;
+      width: auto;
+      justify-content: flex-start;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.25rem;
+      transition: var(--transition);
+      border-radius: 4px;
+      margin: 0 2px;
+    }
+
+    .nav-link:hover {
+      background-color: var(--primary);
+      color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-link.sale {
+      color: var(--accent);
+    }
+
+    .nav-link.sale:hover {
+      background-color: var(--accent);
+      color: var(--secondary);
+    }
+
+    /* ===== Kids Hero Section ===== */
+    .kids-hero {
+      margin-top: 120px;
+      height: 60vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                  url('https://images.unsplash.com/photo-1604917018138-9c16353a1de2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--text-light);
+      padding: 2rem;
+    }
+
+    .kids-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .kids-hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s 0.2s ease-out forwards;
+      opacity: 0;
+    }
+
+    .kids-hero-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: var(--accent);
+      color: var(--secondary);
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+      animation: fadeInUp 0.8s 0.4s ease-out forwards;
+      opacity: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .kids-hero-btn:hover {
+      background-color: transparent;
+      color: var(--secondary);
+      transform: translateY(-3px);
+    }
+
+    /* ===== Age Categories ===== */
+    .age-categories {
+      padding: 4rem 2rem;
+      background-color: var(--secondary);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    .age-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .age-card {
+      background-color: var(--secondary);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .age-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .age-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .age-info {
+      padding: 1.5rem;
+    }
+
+    .age-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .shop-age-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: var(--secondary);
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+
+    .shop-age-btn:hover {
+      background-color: var(--accent);
+    }
+
+    /* ===== Featured Products ===== */
+    .featured-products {
+      padding: 4rem 2rem;
+      background-color: var(--bg-light);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background-color: var(--secondary);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: var(--accent);
+      color: var(--secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .product-img-container {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .product-category {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .product-price {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .product-price .original {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+    }
+
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .add-to-cart {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      flex-grow: 1;
+      margin-right: 0.5rem;
+    }
+
+    .add-to-cart:hover {
+      background-color: var(--accent);
+    }
+
+    .wishlist-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-light);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .wishlist-btn:hover {
+      background-color: #ffcccc;
+      color: var(--accent);
+    }
+
+    /* ===== Newsletter ===== */
+    .newsletter {
+      padding: 4rem 2rem;
+      background-color: var(--primary);
+      color: var(--secondary);
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 1rem;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      font-size: 1rem;
+    }
+
+    .newsletter-btn {
+      padding: 1rem 1.5rem;
+      background-color: var(--accent);
+      color: var(--secondary);
+      border: none;
+      border-radius: 0 4px 4px 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-btn:hover {
+      background-color: #e60000;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background-color: var(--text-dark);
+      color: var(--secondary);
+      padding: 3rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+
+    .footer-about p {
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .footer-links h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--secondary);
+      opacity: 0.8;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== Responsive Styles ===== */
+    @media (max-width: 1024px) {
+      .kids-hero {
+        margin-top: 110px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 0.75rem 1.5rem 0;
+      }
+
+      .kids-hero {
+        margin-top: 150px;
+        height: 50vh;
+      }
+
+      .nav-container {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+      }
+
+      .nav-container::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      .nav-container::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-input {
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+      }
+
+      .newsletter-btn {
+        border-radius: 4px;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-top {
+        flex-direction: column;
+        gap: 1rem;
+        padding-bottom: 0.75rem;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .kids-hero {
+        margin-top: 180px;
+        height: 40vh;
+      }
+
+      .kids-hero h1 {
+        font-size: 2rem;
+      }
+
+      .kids-hero p {
+        font-size: 1rem;
+      }
+
+      .kids-hero-btn {
+        padding: 0.8rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="header-top">
+        <img src="assets/logo.png" alt="E-Thrift Logo" class="logo">
+        <div class="header-actions">
+          <div class="icon-box">
+            <i class="far fa-heart"></i>
+          </div>
+          <div class="icon-box">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <a href="#profile" class="profile-link">
+            Profile
+          </a>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-container">
+          <div class="nav-item">
+            <a href="men.html" class="nav-link">
+              Men
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="women.html" class="nav-link">
+              Women
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link">Kids</a>
+          </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link sale">Sale</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Kids Hero Section -->
+    <section class="kids-hero">
+      <h1>Kids Collection</h1>
+      <p>Discover adorable and comfortable clothing for your little ones at amazing prices</p>
+      <button class="kids-hero-btn">Shop Now</button>
+    </section>
+
+    <!-- Age Categories -->
+    <section class="age-categories">
+      <h2 class="section-title">Shop By Age</h2>
+      <div class="age-grid">
+        <div class="age-card">
+          <img src="https://images.unsplash.com/photo-1604917018138-9c16353a1de2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Newborn" class="age-img">
+          <div class="age-info">
+            <h3>Newborn (0-12M)</h3>
+            <a href="#" class="shop-age-btn">Shop Collection</a>
+          </div>
+        </div>
+        <div class="age-card">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Toddler" class="age-img">
+          <div class="age-info">
+            <h3>Toddler (1-3Y)</h3>
+            <a href="#" class="shop-age-btn">Shop Collection</a>
+          </div>
+        </div>
+        <div class="age-card">
+          <img src="https://images.unsplash.com/photo-1604917018138-9c16353a1de2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Little Kids" class="age-img">
+          <div class="age-info">
+            <h3>Little Kids (4-6Y)</h3>
+            <a href="#" class="shop-age-btn">Shop Collection</a>
+          </div>
+        </div>
+        <div class="age-card">
+          <img src="https://images.unsplash.com/photo-1604917018138-9c16353a1de2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Big Kids" class="age-img">
+          <div class="age-info">
+            <h3>Big Kids (7-12Y)</h3>
+            <a href="#" class="shop-age-btn">Shop Collection</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+      <h2 class="section-title">Featured Kids Items</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <span class="product-badge">Sale</span>
+          <div class="product-img-container">
+            <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kids Graphic Tee" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Superhero Graphic Tee</h3>
+            <span class="product-category">T-Shirts</span>
+            <div class="product-price">
+              <span class="original">$24.99</span>
+              $19.99
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kids Sneakers" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Light-Up Sneakers</h3>
+            <span class="product-category">Shoes</span>
+            <div class="product-price">$34.99</div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <span class="product-badge">New</span>
+          <div class="product-img-container">
+            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kids Backpack" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Unicorn Backpack</h3>
+            <span class="product-category">Accessories</span>
+            <div class="product-price">$29.99</div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kids Water Bottle" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Animal Water Bottle</h3>
+            <span class="product-category">Essentials</span>
+            <div class="product-price">$14.99</div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <h2>Join Our Newsletter</h2>
+      <p>Subscribe to get exclusive offers and updates on our latest kids collections</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Your email address" class="newsletter-input" required>
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <div class="footer-logo">E-Thrift</div>
+        <p>We offer quality pre-loved kids items at affordable prices, helping you save money while reducing waste.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="#">Newborn</a></li>
+          <li><a href="#">Toddler</a></li>
+          <li><a href="#">Little Kids</a></li>
+          <li><a href="#">Big Kids</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>About</h3>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2023 E-Thrift. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Simple animation for elements when they come into view
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.age-card, .product-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      elements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+      });
+    };
+
+    // Initialize animations when page loads
+    window.addEventListener('DOMContentLoaded', animateOnScroll);
+
+    // Add to cart functionality
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        this.textContent = 'Added!';
+        this.style.backgroundColor = 'green';
+        setTimeout(() => {
+          this.textContent = 'Add to Cart';
+          this.style.backgroundColor = '';
+        }, 2000);
+      });
+    });
+
+    // Wishlist functionality
+    document.querySelectorAll('.wishlist-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('far')) {
+          icon.classList.remove('far');
+          icon.classList.add('fas');
+          icon.style.color = 'var(--accent)';
+        } else {
+          icon.classList.remove('fas');
+          icon.classList.add('far');
+          icon.style.color = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
