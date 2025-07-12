@@ -20,16 +20,15 @@ By reusing and sharing clothing, the platform helps reduce waste, support enviro
 - 🔄 Request Swaps (Direct or via Points)
 - 🧾 Swap Request Management (Accept/Reject)
 - 🧑‍💼 User Profile & Dashboard
-- 📬 Notifications (Optional)
-- 🔒 Admin Controls (Optional)
+
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript *(React - optional)*
-- **Backend & Auth**: Firebase (Firestore + Auth + Storage)
-- **Hosting**: Firebase Hosting / GitHub Pages
+- **Frontend**: HTML, CSS, JavaScript,React
+- **Backend & Auth**: NodeJS
+- **Hosting**:GitHub Pages
 
 ---
 
